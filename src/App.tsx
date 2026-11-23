@@ -7,6 +7,8 @@ import { MOCK_ORDERS } from './data/mockOrders';
 import { SidebarNav, DRAWER_WIDTH } from './components/SidebarNav';
 import { Header } from './components/Header';
 import { KpiCard } from './components/KpiCard';
+import repartidor from './assets/repartidor.png';
+
 import {
   WelcomeBannerCard,
   ChartCard,
@@ -84,7 +86,7 @@ export function App() {
 
         <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
           <Grid size={{ xs: 12, lg: 5 }}>
-            <WelcomeBannerCard userName="John Doe" message="Un gusto volverte a ver! Aquí las estadísticas que deseas ver." />
+            <WelcomeBannerCard userName="John Doe" message="Un gusto volverte a ver! Aquí las estadísticas que deseas ver." imageSrc={repartidor} />
           </Grid>
           <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <ChartCard title="Satisfacción del cliente">
@@ -114,6 +116,7 @@ export function App() {
                   { hour: '17:00', orders: 4600 },
                   { hour: '19:00', orders: 5400 },
                   { hour: '21:00', orders: 6400 },
+                  { hour: '23:00', orders: 6400 }
                 ]}
               />
             </ChartCard>
