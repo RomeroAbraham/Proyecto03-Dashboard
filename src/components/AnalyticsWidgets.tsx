@@ -62,11 +62,17 @@ export function SatisfactionGraph({ percentage }: { percentage: number }) {
   return (
     <Stack alignItems="center" spacing={1.5}>
       <Box sx={{ position: 'relative', width: 115, height: 115 }}>
-        <CircularProgress variant="determinate" value={percentage} size={115} thickness={5} sx={{ color: '#1db954' }} />
+        <CircularProgress
+          variant="determinate"
+          value={percentage}
+          size={115}
+          thickness={5}
+          sx={{ color: '#1db954' }}
+        />
         <Box
           sx={{
-            top: 0, left: 0, bottom: 0, right: 0,
             position: 'absolute',
+            inset: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -85,13 +91,13 @@ export function SatisfactionGraph({ percentage }: { percentage: number }) {
 
 export function PaymentMethodsGraph({ data }: { data: { method: string; percentage: number }[] }) {
   return (
-    <Stack spacing={1.8}>
+    <Stack spacing={1.8} width="100%">
       {data.map((item) => (
-        <Box key={item.method} sx={{ bgcolor: '#12241c', p: 1.5, borderRadius: 2.5 }}>
-          <Stack direction="row" justifyContent="space-between" mb={0.5}>
+        <Box key={item.method} sx={{ bgcolor: '#12241c', p: 1.5, borderRadius: 2.5, width: '100%' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.8, width: '100%' }}>
             <Typography variant="body2" color="#cfe0d7">{item.method}</Typography>
             <Typography variant="body2" fontWeight={700} color="#1db954">{item.percentage}%</Typography>
-          </Stack>
+          </Box>
           <LinearProgress
             variant="determinate"
             value={item.percentage}
@@ -107,14 +113,24 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
     </Stack>
   );
 }
-
 export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; orders: number }[] }) {
   const maxVal = Math.max(...hourlyData.map((d) => d.orders), 1);
   return (
     <Box sx={{ overflowX: 'auto', pb: 1 }}>
-      <Stack direction="row" alignItems="flex-end" spacing={2} sx={{ minWidth: 460, height: 165, pt: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: 2, minWidth: 460, height: 170, pt: 2 }}>
         {hourlyData.map((item) => (
-          <Stack key={item.hour} alignItems="center" flex={1} spacing={0.5}>
+          <Box
+            key={item.hour}
+            sx={{
+              flex: 1,
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              gap: 0.5,
+            }}
+          >
             <Typography variant="caption" color="#1db954" fontWeight={600}>{item.orders}</Typography>
             <Box
               sx={{
@@ -126,9 +142,9 @@ export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; 
               }}
             />
             <Typography variant="caption" color="#8a9ba8">{item.hour}</Typography>
-          </Stack>
+          </Box>
         ))}
-      </Stack>
+      </Box>
     </Box>
   );
 }
@@ -145,22 +161,33 @@ export function DeliveryPerformanceGraph({
   const maxCount = Math.max(...data.map((d) => d.count), 1);
   return (
     <Box>
-      <Stack direction="row" alignItems="flex-end" justifyContent="space-between" spacing={1.5} sx={{ height: 110, mb: 2.5 }}>
+      <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 1.5, height: 120, mb: 2.5 }}>
         {data.map((bucket) => (
-          <Stack key={bucket.range} alignItems="center" flex={1} spacing={0.5}>
+          <Box
+            key={bucket.range}
+            sx={{
+              flex: 1,
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              gap: 0.5,
+            }}
+          >
             <Typography variant="caption" color="#cfe0d7">{bucket.count}</Typography>
             <Box
               sx={{
                 width: 14,
-                height: `${Math.max((bucket.count / maxCount) * 70, 8)}px`,
+                height: `${Math.max((bucket.count / maxCount) * 75, 8)}px`,
                 bgcolor: '#fff',
                 borderRadius: 2,
               }}
             />
             <Typography variant="caption" sx={{ color: '#8a9ba8', fontSize: 10 }}>{bucket.range}</Typography>
-          </Stack>
+          </Box>
         ))}
-      </Stack>
+      </Box>
       <Typography variant="subtitle2" fontWeight={700} mb={1}>Desempeño de las entregas</Typography>
       <Stack direction="row" spacing={2}>
         <Stack direction="row" alignItems="center" spacing={1} flex={1} sx={{ bgcolor: '#12241c', p: 1.2, borderRadius: 2.5 }}>
