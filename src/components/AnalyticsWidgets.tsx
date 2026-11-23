@@ -64,7 +64,7 @@ export function WelcomeBannerCard({ userName, message, imageSrc }: { userName: s
         <Typography variant="body2" sx={{ color: '#a5b8ae' }}>
           Bienvenido,
         </Typography>
-        <Typography variant="h4" fontWeight={700} sx={{ my: 0.5 }}>
+        <Typography variant="h4" sx={{ fontWeight: 700, my: 0.5 }}>
           {userName}
         </Typography>
         <Typography variant="body2" sx={{ color: '#cfe0d7', maxWidth: 240, mt: 1.5 }}>
@@ -87,7 +87,7 @@ export function ChartCard({ title, subtitle, children }: { title: string; subtit
       }}
     >
       <CardContent sx={{ p: 2.5 }}>
-        <Typography variant="subtitle1" fontWeight={700}>
+        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           {title}
         </Typography>
         {subtitle && (
@@ -103,7 +103,7 @@ export function ChartCard({ title, subtitle, children }: { title: string; subtit
 
 export function SatisfactionGraph({ percentage }: { percentage: number }) {
   return (
-    <Stack alignItems="center" spacing={1.5}>
+    <Stack spacing={1.5} sx={{ alignItems: "center" }}>
       <Box sx={{ position: 'relative', width: 200, height: 100 }}>
         <Gauge 
         width={200}
@@ -136,7 +136,7 @@ export function SatisfactionGraph({ percentage }: { percentage: number }) {
         </Box>
       </Box>
       <Box sx={{ bgcolor: '#12241c', px: 3, py: 1, borderRadius: 3, width: '100%', textAlign: 'center' }}>
-        <Typography variant="h5" fontWeight={700}>{percentage}%</Typography>
+        <Typography variant="h5" sx={{ fontWeight: 700 }}>{percentage}%</Typography>
         <Typography variant="caption" color="#8a9ba8">Basado en calificación de clientes</Typography>
       </Box>
     </Stack>
@@ -150,7 +150,7 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
 
   return (
     <Stack spacing={1.8}>
-      <Stack alignItems="center" spacing={1} sx={{ bgcolor: '#12241c', p: 1.5, borderRadius: 2.5 }}>
+      <Stack spacing={1} sx={{ alignItems: 'center', bgcolor: '#12241c', p: 1.5, borderRadius: 2.5 }}>        
         <Box sx={{ position: 'relative', width: 120, height: 120 }}>
           <CircularProgress
             variant="determinate"
@@ -172,20 +172,8 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
               '& .MuiCircularProgress-circle': { strokeLinecap: 'round' },
             }}
           />
-          <Stack
-            alignItems="center"
-            justifyContent="center"
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-            }}
-          >
-            <Typography variant="h5" fontWeight={700} lineHeight={1.1}>
+          <Stack sx={{ position: 'absolute', inset: 0, alignItems: 'center', justifyContent: 'center', textAlign: 'center', }}>
+            <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1.1 }}>
               {top.percentage}%
             </Typography>
             <Typography variant="caption" color="#1db954" sx={{ fontSize: 10 }}>
@@ -202,10 +190,10 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
             key={item.method}
             sx={{ flex: 1, minWidth: 0, bgcolor: '#12241c', p: 1.2, borderRadius: 2.5 }}
           >
-            <Typography variant="caption" color="#8a9ba8" display="block" noWrap>
+            <Typography variant="caption" noWrap sx={{ color: '#8a9ba8', display: 'block' }}>
               {item.method}
             </Typography>
-            <Typography variant="body2" fontWeight={700} color="#1db954">
+            <Typography variant="body2" sx={{ fontWeight: 700, color: '#1db954' }}>
               {item.percentage}%
             </Typography>
           </Box>
@@ -214,6 +202,7 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
     </Stack>
   );
 }
+
 export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; orders: number }[] }) {
   return (
     <Box sx={{ width: '100%', overflowX: 'auto', pb: 1 }}>
@@ -311,7 +300,7 @@ export function DeliveryPerformanceGraph({
                     justifyContent: 'flex-end',
                   }}
                 >
-                  <Typography variant="caption" fontWeight={700} sx={{ fontSize: 10, mb: 0.5, lineHeight: 1 }}>
+                  <Typography variant="caption" sx={{ fontWeight: 700, fontSize: 10, mb: 0.5, lineHeight: 1 }}>
                     {formatCompact(bucket.count)}
                   </Typography>
                   <Box sx={{ width: BAR_W, height: h, bgcolor: '#fff', borderRadius: 2 }} />
@@ -334,20 +323,20 @@ export function DeliveryPerformanceGraph({
         </Stack>
       </Box>
 
-      <Typography variant="subtitle2" fontWeight={700} mb={1}>Desempeño de las entregas</Typography>
+      <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1 }}>Desempeño de las entregas</Typography>
       <Stack direction="row" spacing={2}>
-        <Stack direction="row" alignItems="center" spacing={1} flex={1} sx={{ bgcolor: '#12241c', p: 1.2, borderRadius: 2.5 }}>
+        <Stack direction="row" spacing={1} sx={{ flex: 1, alignItems: 'center', bgcolor: '#12241c', p: 1.2, borderRadius: 2.5 }}>
           <WbSunnyIcon sx={{ color: '#fbc02d' }} />
           <Box>
-            <Typography variant="caption" color="#8a9ba8" display="block">Clima más frecuente</Typography>
-            <Typography variant="body2" fontWeight={700}>{mostFrequentWeather}</Typography>
+            <Typography variant="caption" sx={{ color: '#8a9ba8', display: 'block' }}>Clima más frecuente</Typography>
+            <Typography variant="body2" sx={{ fontWeight: 700 }}>{mostFrequentWeather}</Typography>
           </Box>
         </Stack>
-        <Stack direction="row" alignItems="center" spacing={1} flex={1} sx={{ bgcolor: '#12241c', p: 1.2, borderRadius: 2.5 }}>
+        <Stack direction="row" spacing={1} sx={{ flex: 1, alignItems: 'center', bgcolor: '#12241c', p: 1.2, borderRadius: 2.5 }}>
           <DirectionsCarIcon sx={{ color: '#ef5350' }} />
           <Box>
-            <Typography variant="caption" color="#8a9ba8" display="block">Tráfico más frecuente</Typography>
-            <Typography variant="body2" fontWeight={700}>{mostFrequentTraffic}</Typography>
+            <Typography variant="caption" sx={{ color: '#8a9ba8', display: 'block' }}>Tráfico más frecuente</Typography>
+            <Typography variant="body2" sx={{ fontWeight: 700 }}>{mostFrequentTraffic}</Typography>
           </Box>
         </Stack>
       </Stack>
