@@ -61,7 +61,7 @@ export function SidebarNav({ activeItem, onNavigate, mobileOpen, onCloseMobile }
               >
                 {item.icon}
               </ListItemIcon>
-              <ListItemText primary={item.label} primaryTypographyProps={{ fontSize: 14, fontWeight: isActive ? 600 : 400 }} />
+              <ListItemText primary={item.label} slotProps={{ primary: { sx: { fontSize: 14, fontWeight: isActive ? 600 : 400 } }, }} />
             </ListItemButton>
           );
         })}
@@ -75,7 +75,7 @@ export function SidebarNav({ activeItem, onNavigate, mobileOpen, onCloseMobile }
             <ListItemIcon sx={{ minWidth: 38, color: '#1db954', bgcolor: '#13241c', p: 0.8, borderRadius: 2, mr: 1.5 }}>
               {item.icon}
             </ListItemIcon>
-            <ListItemText primary={item.label} primaryTypographyProps={{ fontSize: 14, color: '#b0bec5' }} />
+            <ListItemText primary={item.label} slotProps={{ primary: { sx: { fontSize: 14, color: '#b0bec5' } }, }} />
           </ListItemButton>
         ))}
       </List>

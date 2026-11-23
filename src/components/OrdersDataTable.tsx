@@ -11,7 +11,7 @@ export function OrdersDataTable({ orders, totalCompleted }: OrdersDataTableProps
   return (
     <Card sx={{ bgcolor: '#0d1915', border: '1px solid #1b3227', borderRadius: 4, color: '#fff' }}>
       <CardContent sx={{ p: 2.5 }}>
-        <Typography variant="subtitle1" fontWeight={700}>Detalle de pedidos</Typography>
+        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>Detalle de pedidos</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8, mb: 2, mt: 0.5 }}>
           <CheckCircleIcon sx={{ color: '#1db954', fontSize: 16 }} />
           <Typography variant="caption" color="#8a9ba8">{totalCompleted} completados</Typography>
