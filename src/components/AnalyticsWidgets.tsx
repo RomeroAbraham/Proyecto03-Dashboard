@@ -36,8 +36,8 @@ export function WelcomeBannerCard({ userName, message, imageSrc }: { userName: s
         minHeight: 220,
         borderRadius: 4,
         color: '#fff',
-        background: 'linear-gradient(120deg, #0f291e 0%, #12231B 55%, #0c1b15 100%)',
-        border: '1px solid #1f4232',
+        background: 'linear-gradient(135deg, #0f291e 0%, #12231B 55%, #0c1b15 100%)',
+        border: '1px solid #0a140d',
         display: 'flex',
         alignItems: 'center',
       }}
@@ -80,8 +80,8 @@ export function ChartCard({ title, subtitle, children }: { title: string; subtit
     <Card
       sx={{
         height: '100%',
-        bgcolor: '#0d1915',
-        border: '1px solid #1b3227',
+        background: 'linear-gradient(135deg, #122216 0%, #080f13 100%)',
+        border: '1px solid #0a140d',
         borderRadius: 4,
         color: '#fff',
       }}
@@ -135,7 +135,7 @@ export function SatisfactionGraph({ percentage }: { percentage: number }) {
           <SentimentSatisfiedAltIcon sx={{ color: '#1db954', fontSize: 34 }} />
         </Box>
       </Box>
-      <Box sx={{ bgcolor: '#12241c', px: 3, py: 1, borderRadius: 3, width: '100%', textAlign: 'center' }}>
+      <Box sx={{ background: 'linear-gradient(135deg, #16301d 0%, #101722 100%)', px: 3, py: 1, borderRadius: 3, width: '100%', textAlign: 'center' }}>
         <Typography variant="h5" sx={{ fontWeight: 700 }}>{percentage}%</Typography>
         <Typography variant="caption" color="#8a9ba8">Basado en calificación de clientes</Typography>
       </Box>
@@ -150,7 +150,7 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
 
   return (
     <Stack spacing={1.8}>
-      <Stack spacing={1} sx={{ alignItems: 'center', bgcolor: '#12241c', p: 1.5, borderRadius: 2.5 }}>        
+      <Stack spacing={1} sx={{ alignItems: 'center', p: 1.5 }}>        
         <Box sx={{ position: 'relative', width: 120, height: 120 }}>
           <CircularProgress
             variant="determinate"
@@ -188,7 +188,7 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
         {others.map((item) => (
           <Box
             key={item.method}
-            sx={{ flex: 1, minWidth: 0, bgcolor: '#12241c', p: 1.2, borderRadius: 2.5 }}
+            sx={{ flex: 1, minWidth: 0, background: 'linear-gradient(135deg, #16301d 0%, #101722 100%)', p: 1.2, borderRadius: 2.5 }}
           >
             <Typography variant="caption" noWrap sx={{ color: '#8a9ba8', display: 'block' }}>
               {item.method}
@@ -209,13 +209,9 @@ export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; 
       <Box sx={{ minWidth: hourlyData.length * 80 }}>
         <LineChart
           height={230}
-          xAxis={[
-            {
-              scaleType: 'point',
-              data: hourlyData.map((d) => d.hour),
-            },
+          xAxis={[{ scaleType: 'point', data: hourlyData.map((d) => d.hour), tickLabelStyle: { fill: '#c8f1dd', fontSize: 11 }, },
           ]}
-          yAxis={[{ min: 0 }]}
+          yAxis={[{ min: 0, tickLabelStyle: { fill: '#c8f1dd', fontSize: 11 }, }]}
           series={[
             {
               id: 'orders',
@@ -232,8 +228,8 @@ export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; 
             '& .MuiAreaElement-root': { fillOpacity: 0.22 },
             '& .MuiLineElement-root': { strokeWidth: 3 },
             '& .MuiChartsAxis-tickLabel': { fill: '#c8f1dd' },
-            '& .MuiChartsAxis-line, & .MuiChartsAxis-tick': { stroke: '#c8f1dd' },
-            '& .MuiChartsGrid-line': { stroke: '#8a9ba8', strokeDasharray: '4 4' },
+            '& .MuiChartsAxis-line, & .MuiChartsAxis-tick': { stroke: '#142219' },
+            '& .MuiChartsGrid-line': { stroke: '#223f2c', strokeDasharray: '4 4' },
           }}
         />
       </Box>
@@ -325,14 +321,14 @@ export function DeliveryPerformanceGraph({
 
       <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 1 }}>Desempeño de las entregas</Typography>
       <Stack direction="row" spacing={2}>
-        <Stack direction="row" spacing={1} sx={{ flex: 1, alignItems: 'center', bgcolor: '#12241c', p: 1.2, borderRadius: 2.5 }}>
+        <Stack direction="row" spacing={1} sx={{ flex: 1, alignItems: 'center', background: 'linear-gradient(135deg, #16301d 0%, #101722 100%)', p: 1.2, borderRadius: 2.5 }}>
           <WbSunnyIcon sx={{ color: '#fbc02d' }} />
           <Box>
             <Typography variant="caption" sx={{ color: '#8a9ba8', display: 'block' }}>Clima más frecuente</Typography>
             <Typography variant="body2" sx={{ fontWeight: 700 }}>{mostFrequentWeather}</Typography>
           </Box>
         </Stack>
-        <Stack direction="row" spacing={1} sx={{ flex: 1, alignItems: 'center', bgcolor: '#12241c', p: 1.2, borderRadius: 2.5 }}>
+        <Stack direction="row" spacing={1} sx={{ flex: 1, alignItems: 'center', background: 'linear-gradient(135deg, #16301d 0%, #101722 100%)', p: 1.2, borderRadius: 2.5 }}>
           <DirectionsCarIcon sx={{ color: '#ef5350' }} />
           <Box>
             <Typography variant="caption" sx={{ color: '#8a9ba8', display: 'block' }}>Tráfico más frecuente</Typography>

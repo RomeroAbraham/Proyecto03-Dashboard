@@ -27,11 +27,11 @@ export function SidebarNav({ activeItem, onNavigate, mobileOpen, onCloseMobile }
   ];
 
   const drawerContent = (
-    <Box sx={{ p: 2.5, height: '100%', bgcolor: '#0b141a', color: '#fff' }}>
+    <Box sx={{ p: 2.5, height: '100%', background: 'linear-gradient(135deg, #101811 0%, #0d0f16 100%)', color: '#fff' }}>
       <Typography variant="subtitle2" sx={{ letterSpacing: 2, fontWeight: 700, mb: 2, textAlign: 'center' }}>
         PROYECTO 03
       </Typography>
-      <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)', mb: 2 }} />
+      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.1)', mb: 2 }} />
       <List>
         {menuItems.map((item) => {
           const isActive = activeItem === item.label;

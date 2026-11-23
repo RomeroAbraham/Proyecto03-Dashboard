@@ -9,7 +9,7 @@ interface OrdersDataTableProps {
 
 export function OrdersDataTable({ orders, totalCompleted }: OrdersDataTableProps) {
   return (
-    <Card sx={{ bgcolor: '#0d1915', border: '1px solid #1b3227', borderRadius: 4, color: '#fff' }}>
+    <Card sx={{ background: 'linear-gradient(135deg, #0d1a11 0%, #111418 100%)', border: '1px solid #0a140d', borderRadius: 4, color: '#fff' }}>
       <CardContent sx={{ p: 2.5 }}>
         <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>Detalle de pedidos</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.8, mb: 2, mt: 0.5 }}>
@@ -22,7 +22,7 @@ export function OrdersDataTable({ orders, totalCompleted }: OrdersDataTableProps
             <TableHead>
               <TableRow>
                 {['ID', 'CIUDAD', 'DISTANCIA', 'TIEMPO', 'ESTADO'].map((col) => (
-                  <TableCell key={col} sx={{ color: '#8a9ba8', borderColor: '#1b3227', fontSize: 11, fontWeight: 700 }}>
+                  <TableCell key={col} sx={{ color: '#8a9ba8', borderColor: '#1c2c24', fontSize: 11, fontWeight: 700 }}>
                     {col}
                   </TableCell>
                 ))}
@@ -31,10 +31,10 @@ export function OrdersDataTable({ orders, totalCompleted }: OrdersDataTableProps
             <TableBody>
               {orders.map((order) => (
                 <TableRow key={order.order_id}>
-                  <TableCell sx={{ color: '#fff', borderColor: '#1b3227', fontWeight: 600 }}>{order.order_id}</TableCell>
-                  <TableCell sx={{ color: '#cfe0d7', borderColor: '#1b3227' }}>{order.city}</TableCell>
-                  <TableCell sx={{ color: '#fff', borderColor: '#1b3227', fontWeight: 600 }}>{order.distance_km} km</TableCell>
-                  <TableCell sx={{ color: '#fff', borderColor: '#1b3227', fontWeight: 600 }}>
+                  <TableCell sx={{ color: '#fff', borderColor: '#1c2c24', fontWeight: 600 }}>{order.order_id}</TableCell>
+                  <TableCell sx={{ color: '#cfe0d7', borderColor: '#1c2c24' }}>{order.city}</TableCell>
+                  <TableCell sx={{ color: '#fff', borderColor: '#1c2c24', fontWeight: 600 }}>{order.distance_km} km</TableCell>
+                  <TableCell sx={{ color: '#fff', borderColor: '#1c2c24', fontWeight: 600 }}>
                     {order.actual_delivery_time_minutes ? `${order.actual_delivery_time_minutes} min` : '—'}
                   </TableCell>
                   <TableCell sx={{ borderColor: '#1b3227' }}>

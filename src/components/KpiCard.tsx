@@ -11,8 +11,8 @@ export function KpiCard({ title, value, icon }: KpiCardProps) {
   return (
     <Card
       sx={{
-        background: 'linear-gradient(135deg, #12281e 0%, #0d1915 100%)',
-        border: '1px solid #1d382b',
+        background: 'linear-gradient(135deg, #13291a 0%, #0b180f 100%)',
+        border: '1px solid #0a140d',
         borderRadius: 4,
         color: '#fff',
       }}

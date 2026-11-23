@@ -51,7 +51,7 @@ export function Header({
                 bgcolor: '#102119',
                 color: '#fff',
                 borderRadius: 3,
-                '.MuiOutlinedInput-notchedOutline': { borderColor: '#1f3b2d' },
+                '.MuiOutlinedInput-notchedOutline': { borderColor: '#0f1f13' },
                 '.MuiSvgIcon-root': { color: '#8a9ba8' },
               }}
             >
@@ -75,7 +75,7 @@ export function Header({
               borderRadius: 3,
               input: { color: '#fff', fontSize: 13, colorScheme: 'dark' },
               label: { color: '#8a9ba8' },
-              '.MuiOutlinedInput-notchedOutline': { borderColor: '#1f3b2d' },
+              '.MuiOutlinedInput-notchedOutline': { borderColor: '#0f1f13' },
             }}
           />
 
@@ -92,7 +92,7 @@ export function Header({
               borderRadius: 3,
               input: { color: '#fff', fontSize: 13, colorScheme: 'dark' },
               label: { color: '#8a9ba8' },
-              '.MuiOutlinedInput-notchedOutline': { borderColor: '#1f3b2d' },
+              '.MuiOutlinedInput-notchedOutline': { borderColor: '#0f1f13' },
             }}
           />
         </Stack>
