@@ -8,24 +8,6 @@ import React from 'react';
 
 const ALL_TICKS = [0, 100, 500, 1000, 5000, 10000, 50000, 100000];
 
-function formatCompact(n: number) {
-  if (n < 1000) return String(n);
-  const k = Math.round((n / 1000) * 10) / 10;
-  return `${String(k).replace('.', ',')} K`;
-}
-
-function scaleValue(value: number, ticks: number[]) {
-  const last = ticks.length - 1;
-  if (value >= ticks[last]) return 1;
-  for (let i = 0; i < last; i++) {
-    if (value <= ticks[i + 1]) {
-      const t = (value - ticks[i]) / (ticks[i + 1] - ticks[i]);
-      return (i + t) / last;
-    }
-  }
-  return 0;
-}
-
 export function WelcomeBannerCard({ userName, message, imageSrc }: { userName: string; message: string; imageSrc: string;}) {
   return (
     <Card
@@ -104,7 +86,7 @@ export function ChartCard({ title, subtitle, children }: { title: string; subtit
 export function SatisfactionGraph({ percentage }: { percentage: number }) {
   return (
     <Stack spacing={1.5} sx={{ alignItems: "center" }}>
-      <Box sx={{ position: 'relative', width: 200, height: 100 }}>
+      <Box sx={{ position: 'relative', width: 200, height: 120 }}>
         <Gauge 
         width={200}
           height={115}
@@ -122,18 +104,16 @@ export function SatisfactionGraph({ percentage }: { percentage: number }) {
             [`& .${gaugeClasses.referenceArc}`]: { fill: '#12241c' },
           }}
         />
-        <Box
+        <SentimentSatisfiedAltIcon
           sx={{
             position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            pt: 2, 
+            left: '50%',
+            top: '50%', 
+            transform: 'translateX(-50%)',
+            color: '#1db954',
+            fontSize: 34,
           }}
-        >
-          <SentimentSatisfiedAltIcon sx={{ color: '#1db954', fontSize: 34 }} />
-        </Box>
+        />
       </Box>
       <Box sx={{ background: 'linear-gradient(135deg, #16301d 0%, #101722 100%)', px: 3, py: 1, borderRadius: 3, width: '100%', textAlign: 'center' }}>
         <Typography variant="h5" sx={{ fontWeight: 700 }}>{percentage}%</Typography>
@@ -176,7 +156,7 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
             <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1.1 }}>
               {top.percentage}%
             </Typography>
-            <Typography variant="caption" color="#1db954" sx={{ fontSize: 10 }}>
+            <Typography variant="caption" sx={{ color: '#7dd89d', fontSize: 10, lineHeight: 1.2, maxWidth: 70, textWrap: 'balance', mt: 0.5, }}>
               Método más utilizado
             </Typography>
           </Stack>
@@ -228,13 +208,31 @@ export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; 
             '& .MuiAreaElement-root': { fillOpacity: 0.22 },
             '& .MuiLineElement-root': { strokeWidth: 3 },
             '& .MuiChartsAxis-tickLabel': { fill: '#c8f1dd' },
-            '& .MuiChartsAxis-line, & .MuiChartsAxis-tick': { stroke: '#142219' },
+            '& .MuiChartsAxis-line, && .MuiChartsAxis-tick': { stroke: '#141f18' },
             '& .MuiChartsGrid-line': { stroke: '#223f2c', strokeDasharray: '4 4' },
           }}
         />
       </Box>
     </Box>
   );
+}
+
+function formatCompact(n: number) {
+  if (n < 1000) return String(n);
+  const k = Math.round((n / 1000) * 10) / 10;
+  return `${String(k).replace('.', ',')} K`;
+}
+
+function scaleValue(value: number, ticks: number[]) {
+  const last = ticks.length - 1;
+  if (value >= ticks[last]) return 1;
+  for (let i = 0; i < last; i++) {
+    if (value <= ticks[i + 1]) {
+      const t = (value - ticks[i]) / (ticks[i + 1] - ticks[i]);
+      return (i + t) / last;
+    }
+  }
+  return 0;
 }
 
 export function DeliveryPerformanceGraph({
@@ -299,7 +297,7 @@ export function DeliveryPerformanceGraph({
                   <Typography variant="caption" sx={{ fontWeight: 700, fontSize: 10, mb: 0.5, lineHeight: 1 }}>
                     {formatCompact(bucket.count)}
                   </Typography>
-                  <Box sx={{ width: BAR_W, height: h, bgcolor: '#fff', borderRadius: 2 }} />
+                  <Box sx={{ width: BAR_W, height: h, bgcolor: '#cae7c8', borderRadius: 2 }} />
                 </Box>
               );
             })}
