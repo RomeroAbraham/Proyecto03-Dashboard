@@ -18,12 +18,12 @@ export function KpiCard({ title, value, icon }: KpiCardProps) {
       }}
     >
       <CardContent sx={{ py: 2, '&:last-child': { pb: 2 } }}>
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Stack direction="row" spacing={1.5} sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
           <Box>
             <Typography variant="caption" sx={{ color: '#a5b8ae', display: 'block', mb: 0.5 }}>
               {title}
             </Typography>
-            <Typography variant="h6" fontWeight={700}>
+            <Typography variant="h6" sx={{ fontWeight: 700 }}>
               {value}
             </Typography>
           </Box>
