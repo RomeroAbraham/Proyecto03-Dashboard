@@ -104,7 +104,7 @@ export function ChartCard({ title, subtitle, children }: { title: string; subtit
 export function SatisfactionGraph({ percentage }: { percentage: number }) {
   return (
     <Stack alignItems="center" spacing={1.5}>
-      <Box sx={{ position: 'relative', width: 115, height: 115 }}>
+      <Box sx={{ position: 'relative', width: 200, height: 100 }}>
         <Gauge 
         width={200}
           height={115}
@@ -124,12 +124,12 @@ export function SatisfactionGraph({ percentage }: { percentage: number }) {
         />
         <Box
           sx={{
-            top: 35, left: 85, bottom: 0, right: 0,
             position: 'absolute',
             inset: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            pt: 2, 
           }}
         >
           <SentimentSatisfiedAltIcon sx={{ color: '#1db954', fontSize: 34 }} />
@@ -175,7 +175,15 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
           <Stack
             alignItems="center"
             justifyContent="center"
-            sx={{ position: 'absolute', inset: 0, textAlign: 'center' }}
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+            }}
           >
             <Typography variant="h5" fontWeight={700} lineHeight={1.1}>
               {top.percentage}%
@@ -236,7 +244,7 @@ export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; 
             '& .MuiLineElement-root': { strokeWidth: 3 },
             '& .MuiChartsAxis-tickLabel': { fill: '#c8f1dd' },
             '& .MuiChartsAxis-line, & .MuiChartsAxis-tick': { stroke: '#c8f1dd' },
-            '& .MuiChartsGrid-line': { stroke: '#1b3227', strokeDasharray: '4 4' },
+            '& .MuiChartsGrid-line': { stroke: '#8a9ba8', strokeDasharray: '4 4' },
           }}
         />
       </Box>
@@ -253,8 +261,8 @@ export function DeliveryPerformanceGraph({
   mostFrequentWeather: string;
   mostFrequentTraffic: string;
 }) {
-  const PLOT_H = 130; 
-  const AXIS_W = 36; 
+  const PLOT_H = 130;
+  const AXIS_W = 36;
   const BAR_W = 26;
 
   const maxCount = Math.max(...data.map((d) => d.count), 1);
@@ -262,6 +270,7 @@ export function DeliveryPerformanceGraph({
   const end = idx === -1 ? ALL_TICKS.length : Math.max(idx, 1) + 1;
   const ticks = ALL_TICKS.slice(0, end);
   const last = ticks.length - 1;
+
   return (
     <Box>
       <Box sx={{ bgcolor: '#0a1410', borderRadius: 3, px: 1.5, pt: 3, pb: 1.5, mb: 3 }}>
@@ -286,24 +295,30 @@ export function DeliveryPerformanceGraph({
             ))}
           </Box>
 
-          <Stack direction="row" spacing={1} alignItems="flex-end" sx={{ flex: 1, minWidth: 0, height: PLOT_H }}>
+          <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-end', flex: 1, minWidth: 0, height: PLOT_H }}>
             {data.map((bucket) => {
               const h = bucket.count > 0 ? Math.max(scaleValue(bucket.count, ticks) * PLOT_H, 6) : 0;
               return (
-                <Stack
+                <Box
                   key={bucket.range}
-                  alignItems="center"
-                  justifyContent="flex-end"
-                  sx={{ flex: 1, minWidth: 0, height: '100%' }}
+                  sx={{
+                    flex: 1,
+                    minWidth: 0,
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'flex-end',
+                  }}
                 >
                   <Typography variant="caption" fontWeight={700} sx={{ fontSize: 10, mb: 0.5, lineHeight: 1 }}>
                     {formatCompact(bucket.count)}
                   </Typography>
                   <Box sx={{ width: BAR_W, height: h, bgcolor: '#fff', borderRadius: 2 }} />
-                </Stack>
+                </Box>
               );
             })}
-          </Stack>
+          </Box>
         </Stack>
 
         <Stack direction="row" spacing={1} sx={{ ml: `${AXIS_W}px`, mt: 1 }}>
