@@ -126,6 +126,7 @@ export function SatisfactionGraph({ percentage }: { percentage: number }) {
           sx={{
             top: 35, left: 85, bottom: 0, right: 0,
             position: 'absolute',
+            inset: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -205,7 +206,6 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
     </Stack>
   );
 }
-
 export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; orders: number }[] }) {
   return (
     <Box sx={{ width: '100%', overflowX: 'auto', pb: 1 }}>
