@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Box, CssBaseline, Grid } from '@mui/material';
+import { Alert, Box, CssBaseline, Grid, CircularProgress, LinearProgress } from '@mui/material';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { MOCK_ORDERS } from './data/mockOrders';
+import useFetchData from './hooks/useFetchData';
 import { SidebarNav, DRAWER_WIDTH } from './components/SidebarNav';
 import { Header } from './components/Header';
 import { KpiCard } from './components/KpiCard';
@@ -26,9 +26,10 @@ export function App() {
   const [activePage, setActivePage] = useState<string>('Dashboard');
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
 
-  const cities = Array.from(new Set(MOCK_ORDERS.map((o) => o.city))).sort();
+  const { orders, loading, error } = useFetchData();
+  const cities = Array.from(new Set(orders.map((o) => o.city))).sort();
 
-  const filteredOrders = MOCK_ORDERS.filter((order) => {
+  const filteredOrders = orders.filter((order) => {
     const matchCity = selectedCity === 'ALL' || order.city === selectedCity;
     const matchDate = order.order_date >= startDate && order.order_date <= endDate;
     return matchCity && matchDate;
@@ -42,7 +43,7 @@ export function App() {
     ? (((filteredOrders.length - completedOrders.length) / filteredOrders.length) * 100).toFixed(2)
     : '0.00';
 
-  const ratedOrders = completedOrders.filter((o) => o.customer_rating !== null);
+  const ratedOrders = completedOrders.filter((o) => o.customer_rating != null);
   const satisfactionPct = ratedOrders.length
     ? Math.round((ratedOrders.reduce((acc, o) => acc + (o.customer_rating || 0), 0) / (ratedOrders.length * 5)) * 100)
     : 0;
@@ -50,6 +51,7 @@ export function App() {
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#070f0c' }}>
       <CssBaseline />
+      {/* Sidebar Nav */}
       <SidebarNav
         activeItem={activePage}
         onNavigate={setActivePage}
@@ -58,6 +60,7 @@ export function App() {
       />
 
       <Box component="main" sx={{ flexGrow: 1, minWidth: 0, p: { xs: 2, md: 3 }, width: { md: `calc(100% - ${DRAWER_WIDTH}px)` }, }}>
+      {/* Header */}
         <Header
           activePage={activePage}
           selectedCity={selectedCity}
@@ -72,6 +75,9 @@ export function App() {
           onOpenMobileMenu={() => setMobileOpen(true)}
         />
 
+        {loading && <CircularProgress />}
+        {error && <Alert severity="error">{error}</Alert>}
+        {/* Indicadores */}
         <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
           <Grid size={{ xs: 12, md: 4 }}>
             <KpiCard title="Total pedidos" value={filteredOrders.length} icon={<RestaurantIcon />} />
@@ -83,16 +89,20 @@ export function App() {
             <KpiCard title="Cancelaciones" value={`${cancelRate}%`} icon={<CancelOutlinedIcon />} />
           </Grid>
         </Grid>
-
+  
+        {/* Banner */}
         <Grid container spacing={2.5} sx={{ mb: 2.5 }}>
           <Grid size={{ xs: 12, lg: 5 }}>
             <WelcomeBannerCard userName="John Doe" message="Un gusto volverte a ver! Aquí las estadísticas que deseas ver." imageSrc={repartidor} />
           </Grid>
+
+        {/* Widgets */}
           <Grid size={{ xs: 12, md: 6, lg: 3 }}>
             <ChartCard title="Satisfacción del cliente">
               <SatisfactionGraph percentage={satisfactionPct} />
             </ChartCard>
           </Grid>
+
           <Grid size={{ xs: 12, md: 6, lg: 4 }}>
             <ChartCard title="Distribución de métodos de pago">
               <PaymentMethodsGraph
@@ -121,6 +131,7 @@ export function App() {
               />
             </ChartCard>
           </Grid>
+
           <Grid size={{ xs: 12, lg: 5 }}>
             <ChartCard title="Rangos de tiempo de entrega">
               <DeliveryPerformanceGraph
@@ -138,6 +149,7 @@ export function App() {
           </Grid>
         </Grid>
 
+        {/* Tabla */}
         <OrdersDataTable orders={filteredOrders} totalCompleted={completedOrders.length} />
       </Box>
     </Box>
