@@ -2,15 +2,12 @@ import { get, ref } from "firebase/database";
 import { database } from "../firebase/firebase";
 import type { Order } from "../types/order";
 
-export async function obtenerOrden( collection: string ): Promise<Order | null> {
+export async function obtenerOrdenes(): Promise<Order[]> {
+  const snapshot = await get(ref(database));
 
-  const referencia = ref(database, `${collection}`);
-
-  const snapshot = await get(referencia);
-
-  if (snapshot.exists()) {
-    return snapshot.val() as Order;
+  if (!snapshot.exists()) {
+    return [];
   }
 
-  return null;
+  return Object.values(snapshot.val()) as Order[];
 }
