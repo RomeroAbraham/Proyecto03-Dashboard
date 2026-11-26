@@ -155,7 +155,7 @@ export function App() {
         {loading ? (
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', py: 10, gap: 2 }}>
             <CircularProgress sx={{ color: '#1db954' }} />
-            <Typography color="#cfe0d7">Recuperando datos desde Firebase Realtime Database...</Typography>
+            <Typography sx={{ color: '#cfe0d7' }}>Recuperando datos desde Firebase Realtime Database...</Typography>
           </Box>
         ) : error ? (
           <Alert severity="error" sx={{ mb: 2.5 }}>{error}</Alert>
