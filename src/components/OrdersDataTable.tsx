@@ -17,7 +17,7 @@ export function OrdersDataTable({ orders, totalCompleted }: OrdersDataTableProps
           <Typography variant="caption" color="#8a9ba8">{totalCompleted} completados</Typography>
         </Box>
 
-        <TableContainer sx={{ overflowX: 'auto' }}>
+        <TableContainer sx={{ overflowX: 'auto', maxHeight: 440}}>
           <Table size="small" sx={{ minWidth: 550 }}>
             <TableHead>
               <TableRow>
