@@ -6,7 +6,7 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import React from 'react';
 
-const ALL_TICKS = [0, 100, 500, 1000, 5000, 10000, 50000, 100000];
+const ALL_TICKS = [0, 100, 500];
 
 export function WelcomeBannerCard({ userName, message, imageSrc }: { userName: string; message: string; imageSrc: string;}) {
   return (
