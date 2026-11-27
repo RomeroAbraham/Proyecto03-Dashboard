@@ -62,13 +62,15 @@ export function ChartCard({ title, subtitle, children }: { title: string; subtit
     <Card
       sx={{
         height: '100%',
+        width: '100%',
+        maxWidth: '100%',
         background: 'linear-gradient(135deg, #122216 0%, #080f13 100%)',
         border: '1px solid #0a140d',
         borderRadius: 4,
         color: '#fff',
       }}
     >
-      <CardContent sx={{ p: 2.5 }}>
+      <CardContent sx={{ p: 2.5, width: '100%', boxSizing: 'border-box' }}>
         <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
           {title}
         </Typography>
@@ -77,7 +79,7 @@ export function ChartCard({ title, subtitle, children }: { title: string; subtit
             {subtitle}
           </Typography>
         )}
-        <Box sx={{ mt: subtitle ? 0 : 2 }}>{children}</Box>
+        <Box sx={{ mt: subtitle ? 0 : 2, width: '100%', overflowX: 'auto' }}>{children}</Box>
       </CardContent>
     </Card>
   );
