@@ -186,7 +186,7 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
 export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; orders: number }[] }) {
   return (
     <Box sx={{ width: '100%', overflowX: 'auto', pb: 1 }}>
-      <Box sx={{ minWidth: hourlyData.length * 80 }}>
+      <Box sx={{ minWidth: 650, height: 240 }}>
         <LineChart
           height={230}
           xAxis={[{ scaleType: 'point', data: hourlyData.map((d) => d.hour), tickLabelStyle: { fill: '#c8f1dd', fontSize: 11 }, },

@@ -196,7 +196,7 @@ export function App() {
                 </ChartCard>
               </Grid>
 
-              <Grid size={{ xs: 12, lg: 7 }}>
+              <Grid size={{ xs: 12, lg: 7 }} sx={{ minWidth: 0 }}>
                 <ChartCard title="Pedidos por hora" subtitle="Distribución de pedidos durante el día">
                   <HourlyOrdersGraph hourlyData={metrics.hourlyData} />
                 </ChartCard>
