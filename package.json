@@ -2,12 +2,15 @@
   "name": "proyecto03-dashboard",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://RomeroAbraham.github.io/Proyecto03-Dashboard/",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -29,6 +32,7 @@
     "eslint": "^10.14.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
+    "gh-pages": "^6.3.0",
     "globals": "^17.13.0",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.72.1",
