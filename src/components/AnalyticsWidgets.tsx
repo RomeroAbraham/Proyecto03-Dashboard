@@ -186,12 +186,18 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
 export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; orders: number }[] }) {
   return (
     <Box sx={{ width: '100%', overflowX: 'auto', pb: 1 }}>
-      <Box sx={{ minWidth: 650, height: 240 }}>
+      <Box sx={{ width: 650, height: 240 }}>
         <LineChart
+          width={650}
           height={230}
-          xAxis={[{ scaleType: 'point', data: hourlyData.map((d) => d.hour), tickLabelStyle: { fill: '#c8f1dd', fontSize: 11 }, },
+          xAxis={[
+            {
+              scaleType: 'point',
+              data: hourlyData.map((d) => d.hour),
+              tickLabelStyle: { fill: '#c8f1dd', fontSize: 11 },
+            },
           ]}
-          yAxis={[{ min: 0, tickLabelStyle: { fill: '#c8f1dd', fontSize: 11 }, }]}
+          yAxis={[{ min: 0, tickLabelStyle: { fill: '#c8f1dd', fontSize: 11 } }]}
           series={[
             {
               id: 'orders',
@@ -203,12 +209,12 @@ export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; 
             },
           ]}
           grid={{ horizontal: true }}
-          margin={{ top: 16, right: 32, bottom: 0, left: 0 }}
+          margin={{ top: 16, right: 32, bottom: 24, left: 40 }}
           sx={{
             '& .MuiAreaElement-root': { fillOpacity: 0.22 },
             '& .MuiLineElement-root': { strokeWidth: 3 },
             '& .MuiChartsAxis-tickLabel': { fill: '#c8f1dd' },
-            '& .MuiChartsAxis-line, && .MuiChartsAxis-tick': { stroke: '#141f18' },
+            '& .MuiChartsAxis-line, & .MuiChartsAxis-tick': { stroke: '#141f18' },
             '& .MuiChartsGrid-line': { stroke: '#223f2c', strokeDasharray: '4 4' },
           }}
         />
