@@ -185,10 +185,18 @@ export function PaymentMethodsGraph({ data }: { data: { method: string; percenta
 
 export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; orders: number }[] }) {
   return (
-    <Box sx={{ width: '100%', overflowX: 'auto', pb: 1 }}>
-      <Box sx={{ width: 650, height: 240 }}>
+    <Box
+      sx={{
+        width: '100%',
+        overflowX: 'auto',
+        overflowY: 'hidden',
+        WebkitOverflowScrolling: 'touch',
+        pb: 1,
+      }}
+    >
+      <Box sx={{ width: 680, minWidth: 680, height: 240 }}>
         <LineChart
-          width={650}
+          width={680}
           height={230}
           xAxis={[
             {
@@ -211,6 +219,8 @@ export function HourlyOrdersGraph({ hourlyData }: { hourlyData: { hour: string; 
           grid={{ horizontal: true }}
           margin={{ top: 16, right: 32, bottom: 24, left: 40 }}
           sx={{
+            touchAction: 'pan-x pan-y',
+            '& svg': { touchAction: 'pan-x pan-y' },
             '& .MuiAreaElement-root': { fillOpacity: 0.22 },
             '& .MuiLineElement-root': { strokeWidth: 3 },
             '& .MuiChartsAxis-tickLabel': { fill: '#c8f1dd' },

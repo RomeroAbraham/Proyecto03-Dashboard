@@ -47,9 +47,9 @@ export function App() {
     const completedOrders = filteredOrders.filter((o) => o.order_status === 'Completed');
     const avgTime = completedOrders.length
       ? Math.round(
-          completedOrders.reduce((acc, o) => acc + (o.actual_delivery_time_minutes || 0), 0) /
-            completedOrders.length
-        )
+        completedOrders.reduce((acc, o) => acc + (o.actual_delivery_time_minutes || 0), 0) /
+        completedOrders.length
+      )
       : 0;
     const cancelRate = filteredOrders.length
       ? (((filteredOrders.length - completedOrders.length) / filteredOrders.length) * 100).toFixed(2)
@@ -58,10 +58,10 @@ export function App() {
     const ratedOrders = completedOrders.filter((o) => o.customer_rating != null && o.customer_rating !== ('' as unknown));
     const satisfactionPct = ratedOrders.length
       ? Math.round(
-          (ratedOrders.reduce((acc, o) => acc + Number(o.customer_rating || 0), 0) /
-            (ratedOrders.length * 5)) *
-            100
-        )
+        (ratedOrders.reduce((acc, o) => acc + Number(o.customer_rating || 0), 0) /
+          (ratedOrders.length * 5)) *
+        100
+      )
       : 0;
 
     // Distribución de métodos de pago desde Firebase
